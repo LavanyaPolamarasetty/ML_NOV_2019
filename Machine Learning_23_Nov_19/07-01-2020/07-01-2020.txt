@@ -1,0 +1,124 @@
+In statistics, machine learning, and information theory, dimensionality reduction or 
+dimension reduction is the process of reducing the number of random variables under consideration 
+by obtaining a set of principal variables. 
+
+Approaches can be divided into feature selection and feature extraction.
+
+Feature selection approaches try to find a subset of the input variables 
+(also called features or attributes). 
+
+The three strategies are: the filter strategy (e.g. information gain), 
+the wrapper strategy (e.g. search guided by accuracy), 
+and the embedded strategy (selected features add or are removed while building the model 
+based on prediction errors).
+
+Data analysis such as regression or classification can be done in the reduced space 
+more accurately than in the original space.
+
+Feature projection (also called Feature extraction) transforms the data in the 
+high-dimensional space to a space of fewer dimensions.
+The data transformation may be linear, as in principal component analysis (PCA), but many nonlinear dimensionality reduction 
+techniques also exist.
+
+In mathematics, a tensor is an algebraic object that describes a linear mapping from one set 
+of algebraic objects to another. 
+Objects that tensors may map between include, but are not limited to, vectors and scalars, and, recursively, even other tensors 
+(for example, a matrix is a map between vectors, and is thus a tensor. 
+Therefore a linear map between matrices is also a tensor)
+
+For multidimensional data, tensor representation can be used in dimensionality reduction 
+through multilinear subspace learning.
+
+[Increasingly large amount of multidimensional data are being generated on a daily basis 
+in many applications. This leads to a strong demand for learning algorithms to
+extract useful information from these massive data 
+Data on health status of patients can be high-dimensional 
+(100+ measured/recorded parameters from blood analysis, immune system status, 
+genetic background, nutrition, alcohol- tobacco- 
+drug-consuption, operations, treatments, diagnosed diseases,.).
+
+Many Machine Learning problems involve thousands or even millions of features for 
+each training instance.Not only does this
+make training extremely slow,it can also make it much harder to find a good solution,as well.
+This problem is often referred as "Curse of dimensionality".
+
+Fortunately,in real world problems ,it is often possible to reduce the 
+number of features considerably,turning an intractable problem into
+a tractable one.
+
+Reducing dimensionality does lose some information(just like compressing an image
+to JPEG can degrade its quality),so even though it will speed up training,it may also make 
+your system perform sighlty worse.It also makes your pipelines a bit more complex and 
+harder to maintain.
+
+So you should first try to run(or train) your system with the original data before considering
+using dimensionality reduction if the training is slow,then we can go for reducing the 
+dimensionality which will filter out some noise and which results in higher performance. 
+
+
+Principal Component Analysis:
+
+In simple words, principal component analysis is a method of extracting important variables 
+(in form of components) from a large set of variables available in a data set. 
+It extracts low dimensional set of features from a high dimensional data set with a
+motive to capture as much information as possible. With fewer variables, 
+visualization also becomes much more meaningful. PCA is more useful when dealing 
+with 3 or higher dimensional data.
+
+
+It is always performed on a symmetric correlation or covariance matrix. 
+This means the matrix should be numeric and have standardized data.
+Let’s understand it using an example:
+Let’s say we have a data set of dimension 300 (n) × 50 (p). n represents the number of observations and p represents number of predictors. Since we have a large p = 50, there can be p(p-1)/2 scatter plots i.e more than 1000 plots possible to analyze the variable relationship. Wouldn’t is be a tedious job to perform exploratory analysis on this data ?
+In this case, it would be a lucid approach to select a subset of p (p << 50) predictor which captures as much information. Followed by plotting the observation in the resultant low dimensional space.
+
+Eigen values and Eigen vectors :Let A be an n*n matrix,A scalar (lambda) is called an Eigen value
+
+Ax = (lambda)x 
+
+-->(A-lambda)x = 0
+
+x -> Eigen Vector
+
+Why is normalization of variables necessary ?
+
+The principal components are supplied with normalized version of original predictors. This is because, the original predictors may have different scales. For example: Imagine a data set with variables’ measuring units as gallons, kilometres, light years etc. It is definite that the scale of variances in these variables will be large.
+Performing PCA on un-normalized variables will lead to insanely large loadings for variables with high variance. In turn, this will lead to dependence of a principal component on the variable with high variance. This is undesirable.
+By reducing the dimension of your feature space, you have fewer relationships between variables to consider and you are less likely to overfit your model. (Note: This doesn’t immediately mean that overfitting, etc. are no longer concerns — but we’re moving in the right direction!). 
+We are generating a tremendous amount of data daily. In fact, 90% of the data in the world has been generated in the last 3-4 years! The numbers are truly mind boggling. Below are just some of the examples of the kind of data being collected:
+Facebook collects data of what you like, share, post, places you visit, restaurants you like, etc.
+Your smartphone apps collect a lot of personal information about you
+Amazon collects data of what you buy, view, click, etc. on their site
+Casinos keep a track of every move each customer makes
+
+
+As data generation and collection keeps increasing, visualizing it and drawing inferences becomes more and more challenging. One of the most common ways of doing visualization is through charts. Suppose we have 2 variables, Age and Height. We can use a scatter or line plot between Age and Height and visualize their relationship easily
+Now consider a case in which we have, say 100 variables (p=100). In this case, we can have 100(100-1)/2 = 5000 different plots. It does not make much sense to visualize each of them separately, right? In such cases where we have a large number of variables, it is better to select a subset of these variables (p<<100) which captures as much information as the original set of variables.
+Somewhat unsurprisingly, reducing the dimension of the feature space is called “dimensionality reduction.” Reducing dimensionality does lose some information (just like compressing an image to JPEG can degrade it quality),so even though it will speed up training, it may also make your system perform slightly worse. It also makes your pipelines a bit more complex and thus harder to maintain. So you should first try to train your system with the original data before considering using dimensionality reduction if training is too slow.In some cases, however reducing the dimensionality of the training data may filter out some noise and unnecessary details and thus result in higher performance (but in general it won’t ; it will just speed up training.
+Apart from speeding up training, dimensionality reduction is also extremely useful for data visualization. Reducing the number of dimensions down to two (or three) makes it possible to plot a high-dimensional training set on a graph and often gain some important insights by visually detecting patterns such as clusters.
+Principal component analysis is a technique for feature extraction — so it combines our input variables in a specific way, then we can drop the “least important” variables while still retaining the most valuable parts of all of the variables! As an added benefit, each of the “new” variables after PCA are all independent of one another. Thus it is a technique used to emphasize variation and bring out strong patterns in a dataset. It's often used to make data easy to explore and visualize.
+But, like, why does PCA work?
+While PCA is a very technical method relying on in-depth linear algebra algorithms, it’s a relatively intuitive method when you think about it.
+
+
+A = [3 1
+     1  3]
+
+det(A - (lambda)I) = 0
+
+det(A - (lambda)I)  = [3 - lambda   1                    =  (lambda)^2 - 6(lambda) + 8
+                        1        3 - lambda]
+
+lambda = 4 , 2  -->eigen values
+
+eigen vectors = [1 
+                 1]      , [-1
+                             1]
+
+
+
+
+
+
+
+
